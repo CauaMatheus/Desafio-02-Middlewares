@@ -3,11 +3,10 @@
 ## Sumário
 - [💻 Sobre o desafio]()
 - [🔗 Middlewares da aplicação]()
-  - []()
-  - []()
-  - []()
-  - []()
-  - []()
+  - [`checksExistsUserAccount`](#checksexistsuseraccount)
+  - [`checksCreateTodosUserAvailability`](#checkscreatetodosuseravailability)
+  - [`checksTodoExists`](#checkstodoexists)
+  - [`findUserById`](#finduserbyid)
 - [🤔 Como foi feito os testes ?](#-como-foi-realizado-os-testes-)
 - [📦 Como usar](#-como-usar)
 
