@@ -33,22 +33,21 @@ function checksTodoExists(request, response, next) {
   const { username } = request.headers;
   const { id } = request.params;
 
-  if (validate(id)) {
-    const user = users.find(user => user.username === username);
-    if (user) {
-      const todo = user.todos.find(todo => todo.id === id)
-      if (todo) {
-        request.todo = todo;
-        request.user = user;
-        return next()
-      } else {
-        return response.status(404).json({ error: 'Todo not found' })
-      }
-    } else {
-      return response.status(404).json({ error: 'User does not exist' })
-    }
+  const user = users.find(user => user.username === username);
+  if (!validate(id)) {
+    return response.status(400).json({ error: 'The ID has to be UUID' });
+  }
+  if (!user) {
+    return response.status(404).json({ error: 'User does not exist' });
+  }
+
+  const todo = user.todos.find(todo => todo.id === id)
+  if (todo) {
+    request.todo = todo;
+    request.user = user;
+    return next()
   } else {
-    return response.status(400).json({ error: 'The ID have to be UUID' })
+    return response.status(404).json({ error: 'Todo not found' })
   }
 }
 
